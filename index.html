@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7f4" />
+    <title>Personal Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="page-header">
+        <p class="eyebrow">YOUR MONEY, IN FOCUS</p>
+        <h1>Expense tracker</h1>
+        <p class="intro">Keep track of the little things that add up.</p>
+      </header>
+
+      <section class="summary-card" aria-labelledby="total-heading">
+        <div>
+          <p class="summary-label" id="total-heading">Total expenses</p>
+          <p class="summary-note">Across all your entries</p>
+        </div>
+        <output class="total-amount" id="total-amount" aria-live="polite">$0.00</output>
+      </section>
+
+      <section class="content-card" aria-labelledby="add-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STAY ON TOP OF IT</p>
+            <h2 id="add-heading">Add an expense</h2>
+          </div>
+          <label class="currency-field" for="currency-select">
+            <span>Currency</span>
+            <select id="currency-select" name="currency">
+              <option value="USD">US Dollar ($)</option>
+              <option value="INR">Indian Rupee (₹)</option>
+            </select>
+          </label>
+        </div>
+        <p class="currency-note">Changing currency updates the display; it doesn't convert amounts.</p>
+
+        <form id="expense-form">
+          <div class="form-grid">
+            <label class="field field-name" for="expense-name">
+              <span>Item name</span>
+              <input
+                id="expense-name"
+                name="name"
+                type="text"
+                placeholder="e.g. Morning coffee"
+                maxlength="80"
+                autocomplete="off"
+                required
+              />
+            </label>
+
+            <label class="field" for="expense-amount">
+              <span>Amount</span>
+              <div class="amount-input">
+                <span aria-hidden="true">$</span>
+                <input
+                  id="expense-amount"
+                  name="amount"
+                  type="number"
+                  placeholder="0.00"
+                  min="0.01"
+                  step="0.01"
+                  inputmode="decimal"
+                  required
+                />
+              </div>
+            </label>
+
+            <label class="field" for="expense-category">
+              <span>Category</span>
+              <select id="expense-category" name="category" required>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-footer">
+            <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+            <button class="add-button" type="submit">
+              <span aria-hidden="true">+</span>
+              Add expense
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="expenses-section" aria-labelledby="expenses-heading">
+        <div class="list-heading">
+          <div>
+            <p class="eyebrow">YOUR ACTIVITY</p>
+            <h2 id="expenses-heading">Recent expenses</h2>
+          </div>
+          <span class="entry-count" id="entry-count">0 entries</span>
+        </div>
+        <ul class="expense-list" id="expense-list" aria-live="polite"></ul>
+      </section>
+
+      <footer class="page-footer">Your expense data stays in this browser.</footer>
+    </main>
+  </body>
+</html>
